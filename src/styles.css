@@ -1,3 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'primeicons/primeicons.css';
 @import 'tailwindcss';
+
+@layer components {
+  .btn-saffron {
+    @apply !bg-[#FF9933] hover:!bg-[#E68A2E] !text-white font-bold py-3.5 rounded-lg transition-all shadow-md active:scale-[0.98] !border-0 flex justify-center items-center;
+  }
+  
+  .btn-saffron-light {
+    @apply !bg-[#FFB366] hover:!bg-[#FF9933] !text-white font-bold py-3.5 rounded-lg transition-all shadow-md active:scale-[0.98] !border-0 flex justify-center items-center;
+  }
+}
