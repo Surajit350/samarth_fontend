@@ -1,0 +1,24 @@
+<header class="flex items-center justify-between h-16 px-6 bg-orange-50 dark:bg-slate-800 border-b border-orange-200 dark:border-slate-700 shadow-sm z-10 transition-colors duration-300">
+  <div class="flex items-center gap-4">
+    <button (click)="layoutService.toggleSidebar()" class="text-slate-500 hover:text-[#FF9933] dark:text-slate-400 focus:outline-none transition-colors">
+      <i class="pi pi-bars text-xl"></i>
+    </button>
+    <h1 class="text-xl font-bold text-slate-800 dark:text-white truncate">Samarth Portal</h1>
+  </div>
+  
+  <!-- Topbar Actions -->
+  <div class="flex items-center gap-4">
+    <!-- Accessibility Theme Toggle -->
+    <div (click)="accessibility.toggleTheme()" class="w-12 h-6 bg-slate-200 dark:bg-slate-700 rounded-full relative flex items-center p-1 cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors shadow-inner">
+      <div class="w-4 h-4 bg-white rounded-full absolute shadow transition-all duration-300 flex items-center justify-center" [ngClass]="accessibility.getTheme() === 'dark' ? 'right-1' : 'left-1'"></div>
+      <div class="w-full flex" [ngClass]="accessibility.getTheme() === 'dark' ? 'justify-start pl-1.5' : 'justify-end pr-1.5'">
+        <i class="pi" [ngClass]="accessibility.getTheme() === 'dark' ? 'pi-moon text-blue-300' : 'pi-sun text-yellow-500'" style="font-size: 10px;"></i>
+      </div>
+    </div>
+    
+    <!-- User Avatar -->
+    <div class="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 flex items-center justify-center text-slate-600 dark:text-slate-300 cursor-pointer hover:ring-2 ring-[#FF9933] transition-all">
+      <i class="pi pi-user text-sm"></i>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,51 @@
+<aside 
+  class="fixed inset-y-0 left-0 z-20 flex flex-col w-64 transition-transform duration-300 ease-in-out bg-orange-50 dark:bg-slate-800 border-r border-orange-100 dark:border-slate-700 lg:static lg:translate-x-0 shadow-lg"
+  [ngClass]="{'translate-x-0': (layoutService.sidebarOpen$ | async), '-translate-x-full': !(layoutService.sidebarOpen$ | async)}"
+>
+  <!-- Sidebar Header -->
+  <div class="flex items-center justify-between h-16 px-4 bg-[#1f2937] text-white border-b border-slate-700/50">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded bg-[#FF9933] flex items-center justify-center text-white font-bold">S</div>
+      <span class="text-lg font-bold tracking-widest uppercase">Samarth</span>
+    </div>
+    <button (click)="layoutService.toggleSidebar()" class="lg:hidden text-slate-300 hover:text-white">
+      <i class="pi pi-times text-xl"></i>
+    </button>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+    <a routerLink="/dashboard" routerLinkActive="bg-orange-50 text-slate-700 dark:text-slate-200 dark:bg-slate-700/50 border-r-4 border-[#FF9933]" class="flex items-center px-4 py-3 text-slate-600 dark:text-slate-300 rounded-lg hover:bg-orange-50 hover:text-slate-700 dark:hover:bg-slate-700/50 dark:hover:text-slate-200 transition-colors group">
+      <i class="pi pi-home text-lg mr-3 group-hover:scale-110 transition-transform"></i>
+      <span class="font-semibold">Dashboard</span>
+    </a>
+    
+    <!-- Duty Management Main Menu -->
+    <div>
+      <button (click)="toggleDutyManagement()" class="w-full flex items-center justify-between px-4 py-3 text-slate-600 dark:text-slate-300 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors group">
+        <div class="flex items-center">
+          <i class="pi pi-briefcase text-lg mr-3 group-hover:scale-110 transition-transform"></i>
+          <span class="font-semibold">Duty Management</span>
+        </div>
+        <i class="pi text-sm transition-transform duration-300" [ngClass]="{'pi-chevron-down': isDutyManagementOpen, 'pi-chevron-right': !isDutyManagementOpen}"></i>
+      </button>
+      
+      <!-- Sub Menu -->
+      <div *ngIf="isDutyManagementOpen" class="mt-1 ml-4 pl-4 border-l-2 border-slate-200 dark:border-slate-700 space-y-1">
+        <a routerLink="/permission" routerLinkActive="text-[#FF9933] font-bold" class="flex items-center px-4 py-2 text-slate-500 dark:text-slate-400 rounded-lg hover:text-[#FF9933] dark:hover:text-[#FF9933] hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors">
+          <i class="pi pi-shield text-md mr-3"></i>
+          <span>Permission</span>
+        </a>
+      </div>
+    </div>
+    
+  </nav>
+  
+  <!-- Sidebar Footer (Logout) -->
+  <div class="p-4 border-t border-orange-200 dark:border-slate-700">
+    <button (click)="logout()" class="flex items-center w-full px-4 py-3 text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors group">
+      <i class="pi pi-sign-out text-lg mr-3 group-hover:-translate-x-1 transition-transform"></i>
+      <span class="font-semibold">Logout</span>
+    </button>
+  </div>
+</aside>

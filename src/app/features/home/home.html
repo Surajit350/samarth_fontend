@@ -1,0 +1,200 @@
+<!-- ===== GOVERNMENT HEADER ===== -->
+<header class="glass-header sticky top-0 left-0 w-full z-50 px-4 md:px-8 py-3 flex flex-col md:flex-row items-center justify-between"
+        [class.scrolled]="isScrolled">
+  
+  <!-- Left Side: Govt Info -->
+  <div class="flex flex-col w-full md:w-1/3 mb-3 md:mb-0 text-center md:text-left">
+    <span class="text-[#FF9933] font-bold text-xl leading-tight">পশ্চিমবঙ্গ সরকার</span>
+    <span class="text-[#FF9933] font-black text-base md:text-lg tracking-wide leading-tight">GOVERNMENT OF WEST BENGAL</span>
+    <span class="text-[#FF9933] font-semibold text-xs tracking-widest leading-tight mt-0.5">FINANCE DEPARTMENT</span>
+  </div>
+
+  <!-- Center: Portal Name -->
+  <div class="flex flex-col items-center text-center w-full md:w-1/3 mb-3 md:mb-0">
+    <span class="text-[#FF9933] font-black text-xl md:text-2xl tracking-[0.15em] leading-tight">SAMARTH PORTAL</span>
+    <span class="text-[#FF9933] font-semibold text-xs md:text-sm mt-1">পশ্চিমবঙ্গ সরকারের সমস্ত সামাজিক পেনশন প্রকল্পের উম্মান আমব্রেলা স্কিম</span>
+  </div>
+
+  <!-- Right Side: Action -->
+  <div class="w-full md:w-1/3 flex justify-center md:justify-end">
+    <button (click)="navigateToLogin()" class="bg-[#FF9933] hover:bg-[#E68A2E] px-6 py-2.5 text-sm font-bold text-white rounded-lg shadow transition-all hover:shadow-md flex items-center">
+      <i class="pi pi-sign-in mr-2"></i>Login
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero-section">
+  <img src="/images/backgound.png" class="hero-bg" alt="Samarth Portal Background" />
+  <div class="hero-overlay"></div>
+
+
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE STRIP ===== -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    @for (scheme of allSchemes; track scheme) {
+      <span class="marquee-pill">{{ scheme }}</span>
+    }
+    <!-- Duplicate for seamless loop -->
+    @for (scheme of allSchemes; track scheme) {
+      <span class="marquee-pill">{{ scheme }}</span>
+    }
+  </div>
+</div>
+
+<!-- ===== DEPARTMENT EXPLORER ===== -->
+<section class="explorer-section" id="departments">
+  <h2 class="section-title">Explore Departments</h2>
+  <p class="section-subtitle">Select a department to view its active welfare schemes and access the portal</p>
+
+  <!-- Horizontal Tabs -->
+  <div class="dept-tabs max-w-5xl mx-auto">
+    @for (dept of departments; track dept.name; let i = $index) {
+      <button class="dept-tab" [class.active]="activeTabIndex === i" (click)="selectDept(dept, i)">
+        <i [class]="'pi ' + dept.icon" class="mr-1.5"></i>
+        {{ dept.shortName }}
+      </button>
+    }
+  </div>
+
+  <!-- Department Detail Card -->
+  <div class="dept-detail">
+    <div class="dept-header">
+      <img [src]="selectedDept.image" [alt]="selectedDept.name" />
+      <div class="dept-header-overlay">
+        <div class="dept-icon-badge" [style.background]="selectedDept.accentColor">
+          <i [class]="'pi ' + selectedDept.icon"></i>
+        </div>
+        <div class="dept-name">{{ selectedDept.name }}</div>
+        <div class="dept-desc">{{ selectedDept.desc }}</div>
+      </div>
+    </div>
+
+    <!-- Schemes Grid -->
+    <div class="schemes-grid">
+      @for (scheme of selectedDept.schemes; track scheme.name) {
+        <div class="scheme-card" [style.border-left]="'4px solid ' + selectedDept.accentColor">
+          
+          <div class="flex justify-between items-start mb-1">
+            <div class="scheme-name">{{ scheme.name }}</div>
+            <div class="scheme-status">
+              <span class="scheme-status-dot"></span>
+              Active
+            </div>
+          </div>
+
+          <div class="scheme-badge">{{ scheme.desc }}</div>
+
+          <button (click)="navigateToLogin()" class="btn-access">
+            Access Portal <i class="pi pi-arrow-right text-xs"></i>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== COVERAGE & IMPACT SECTION ===== -->
+<section class="impact-section">
+  <h2 class="text-3xl font-extrabold text-center mb-2 tracking-tight">Coverage & Impact</h2>
+  <p class="text-center text-slate-400 mb-12 text-sm">Delivering welfare across the state of West Bengal</p>
+
+  <div class="impact-grid">
+    <!-- Map Side -->
+    <div class="impact-map">
+      <img src="/images/wb_map.jpg" alt="West Bengal Map" style="mix-blend-mode: luminosity;" />
+    </div>
+
+    <!-- Metrics Side -->
+    <div class="impact-metrics">
+      <div class="impact-metric">
+        <div class="impact-number">{{ departments.length }}</div>
+        <div class="impact-label">Government Departments Onboarded</div>
+      </div>
+      <div class="impact-metric">
+        <div class="impact-number">{{ totalSchemes }}</div>
+        <div class="impact-label">Active Welfare Schemes Running</div>
+      </div>
+      <div class="impact-metric">
+        <div class="impact-number">23</div>
+        <div class="impact-label">Districts Covered Across West Bengal</div>
+      </div>
+      <div class="impact-metric">
+        <div class="impact-number">1M+</div>
+        <div class="impact-label">Beneficiaries Served Cumulatively</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PREMIUM FOOTER ===== -->
+<footer class="premium-footer">
+  <div class="footer-grid">
+    <!-- Brand -->
+    <div>
+      <div class="footer-brand-logo">
+        <div class="footer-logo-mark">S</div>
+        <span class="footer-brand-name">Samarth Portal</span>
+      </div>
+      <p class="footer-about">
+        A unified government portal dedicated to seamless welfare scheme management and direct benefit transfers. 
+        We aim to bring transparency and accessibility to all citizens.
+      </p>
+      <div class="footer-social">
+        <a href="#" class="social-btn"><i class="pi pi-facebook text-sm"></i></a>
+        <a href="#" class="social-btn"><i class="pi pi-twitter text-sm"></i></a>
+        <a href="#" class="social-btn"><i class="pi pi-youtube text-sm"></i></a>
+        <a href="#" class="social-btn"><i class="pi pi-github text-sm"></i></a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4 class="footer-heading">Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#">About Samarth</a></li>
+        <li><a href="#">All Departments</a></li>
+        <li><a href="#">Track Application Status</a></li>
+        <li><a href="#">Grievance Redressal</a></li>
+        <li><a href="#">FAQ & Help</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h4 class="footer-heading">Contact Us</h4>
+      <div class="flex flex-col gap-4">
+        <div class="footer-contact-item">
+          <i class="pi pi-map-marker"></i>
+          <span>Department of e-Governance<br>State Secretariat Building</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="pi pi-phone"></i>
+          <span>Toll-Free: 1800-XXX-XXXX</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="pi pi-envelope"></i>
+          <span>support&#64;samarth.gov.in</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <p>&copy; 2026 Samarth Portal. All Rights Reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Accessibility Statement</a>
+    </div>
+  </div>
+</footer>

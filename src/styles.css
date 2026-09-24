@@ -3,6 +3,18 @@
 @import 'primeicons/primeicons.css';
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  *, ::before, ::after {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+}
+
 @layer components {
   .btn-saffron {
     @apply !bg-[#FF9933] hover:!bg-[#E68A2E] !text-white font-bold py-3.5 rounded-lg transition-all shadow-md active:scale-[0.98] !border-0 flex justify-center items-center;
