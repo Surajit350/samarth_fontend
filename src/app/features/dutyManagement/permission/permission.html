@@ -1,1 +1,22 @@
-<p>permission works!</p>
+<div class="p-4 bg-slate-50 min-h-[calc(100vh-100px)]">
+  <!-- Shared Module Title Panel -->
+  <app-page-header 
+    title="Permission Management" 
+    subtitle="Manage user roles and system access permissions"
+    icon="pi-shield">
+    
+    <!-- Custom Action Buttons passed to ng-content -->
+   
+  </app-page-header>
+    
+    <!-- Main Content Body -->
+    <div class="p-6 bg-white rounded-xl shadow-sm border border-slate-200">
+      <app-data-table 
+        [columns]="tableCols" 
+        [data]="tableData"
+        [loading]="false"
+        [globalFilterFields]="['roleName', 'module', 'status']"
+        [showFilter]="true">
+      </app-data-table>
+    </div>
+</div>

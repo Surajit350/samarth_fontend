@@ -1,0 +1,18 @@
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 mb-4 overflow-hidden">
+  <div class="px-4 py-3 border-b border-slate-100 flex flex-wrap justify-between items-center bg-gradient-to-r from-slate-50 to-white">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-[#FF9933]">
+        <i class="pi text-lg" [ngClass]="icon"></i>
+      </div>
+      <div>
+        <h2 class="text-lg font-bold text-slate-800 leading-tight">{{ title }}</h2>
+        <p class="text-xs text-slate-500 mt-0.5" *ngIf="subtitle">{{ subtitle }}</p>
+      </div>
+    </div>
+    
+    <div class="mt-2 sm:mt-0 flex gap-2">
+      <!-- Content projected from the parent component (e.g. Action Buttons) -->
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
